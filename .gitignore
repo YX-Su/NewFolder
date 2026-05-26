@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.env.local
+
+# data — don't commit textbooks or large parsed output
+data/raw/
+data/parsed/
+data/index/
+data/chunks/
+
+# but DO commit the eval seed set
+!data/eval/
+!data/eval/*.jsonl
+
+# editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# notebooks
+.ipynb_checkpoints/
+
+# logs
+*.log
+logs/

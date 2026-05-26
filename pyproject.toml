@@ -1,0 +1,39 @@
+[project]
+name = "mathrag"
+version = "0.1.0"
+description = "RAG + Agent system for Chinese university math problem solving"
+requires-python = ">=3.10"
+dependencies = [
+    "openai>=1.40.0",
+    "chromadb>=0.5.0",
+    "rank-bm25>=0.2.2",
+    "jieba>=0.42.1",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0",
+    "streamlit>=1.30",
+    "sympy>=1.12",
+    "requests>=2.31",
+    "tqdm>=4.66",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+parsing = [
+    # MinerU is heavy and pulls torch — install separately:
+    #   pip install -U "magic-pdf[full]" --extra-index-url https://wheels.myhloli.com
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
