@@ -25,23 +25,30 @@
 
 ## 快速开始
 
+### 给访客（用 Demo）
+直接打开 Streamlit 页面，左侧填自己的 DeepSeek key（baseline）或加上 SiliconFlow key
+（rag / agent）。**自带 key 自己付费**，浏览器会话内有效，不上传服务端。
+
+### 给开发者（搭起来 + 喂数据）
+
 ```bash
 # 1. 装依赖
 pip install -e .
 
-# 2. 配 .env（拷 .env.example，填 DeepSeek + SiliconFlow key）
+# 2. 配 .env（拷 .env.example，填你自己的 DeepSeek + SiliconFlow key）
 cp .env.example .env
 
-# 3. 解析 PDF -> Markdown（需先 pip install magic-pdf[full]）
+# 3. 解析 PDF -> Markdown（推荐用 MinerU 在线版 mineru.net，然后把 md 放进 data/parsed/）
+#    或本地安装：pip install -U 'magic-pdf[full]' --extra-index-url https://wheels.myhloli.com
 python scripts/parse_pdf.py --pdf data/raw/数学分析.pdf --out data/parsed/
 
-# 4. 构建索引
+# 4. 构建索引（开发者一次性，索引可作为 release 附件分发）
 python scripts/build_index.py --src data/parsed/ --out data/index/
 
-# 5. 跑评测
+# 5. 跑评测（用你自己的 key）
 python scripts/run_eval.py --eval data/eval/seed.jsonl --variants baseline,rag,agent
 
-# 6. 起 Demo
+# 6. 本地起 Demo
 streamlit run app.py
 ```
 
